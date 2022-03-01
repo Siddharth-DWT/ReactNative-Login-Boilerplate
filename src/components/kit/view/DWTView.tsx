@@ -11,7 +11,6 @@ import {
 import {useHeaderHeight} from '@react-navigation/elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import StatusBar from '../StatusBar';
-import {ThemeProvider} from '@react-navigation/native';
 
 type DWTViewProps = ViewProps & {
   padded?: boolean;

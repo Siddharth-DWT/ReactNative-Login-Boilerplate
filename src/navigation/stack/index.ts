@@ -1,3 +1,5 @@
+import UnauthorizedStack from './UnauthorizedStack';
 import HomeStack from './HomeStack';
+import SettingStack from './SettingStack';
 
-export {HomeStack};
+export {HomeStack, SettingStack, UnauthorizedStack};

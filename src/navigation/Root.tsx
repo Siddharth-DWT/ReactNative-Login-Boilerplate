@@ -1,12 +1,12 @@
 import React from 'react';
-import AuthorizedStack from '../navigation/stack/AuthorizedStack';
 import UnauthorizedStack from '../navigation/stack/UnauthorizedStack';
-
+import BottomTab from '../navigation/BottomTab';
 import Settings from '../container/Settings';
+
 const Root = () => {
   const {loggedInUser} = Settings.useContainer();
 
-  return loggedInUser ? <AuthorizedStack /> : <UnauthorizedStack />;
+  return loggedInUser ? <BottomTab /> : <UnauthorizedStack />;
 };
 
 export default Root;

@@ -1,3 +1,18 @@
+export type User = {
+  _id: string;
+  name: string;
+  email: string;
+  userType: string;
+  gender: string;
+  age: string;
+  phone: string;
+  __v: number;
+};
+
+export type UserResponse = {
+  result: User;
+};
+
 export type LoginBody = {
   email: string;
   password: string;
@@ -7,6 +22,13 @@ export type LoggedInUser = {
   userType: string;
   id: string;
   token: string;
+};
+
+export type EditUserBody = {
+  email: string;
+  name: string;
+  phone: string;
+  gender: string;
 };
 
 export type SignUpBody = {
@@ -37,10 +59,9 @@ export type ChangePasswordBody = {
 export type UpdateBody = {
   name: string;
   email: string;
-  userType: string;
   gender: string;
-  age: string;
   phone: string;
+  id: string;
 };
 
 export type SignUpResponse = any;

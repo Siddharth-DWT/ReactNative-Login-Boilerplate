@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme, props: Props) => {
       alignItems: 'center',
     },
     leftIcon: {
-      paddingHorizontal: 16,
+      paddingHorizontal: 8,
     },
     rightIconContainer: {
       justifyContent: 'center',

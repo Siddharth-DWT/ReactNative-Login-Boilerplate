@@ -3,7 +3,7 @@ import {createContainer} from 'unstated-next';
 import useAsyncStorage from '../hooks/useAsyncStorage';
 import {asyncStorageKeys} from '../style/constants';
 import {ColorSchemeName, useColorScheme} from 'react-native';
-import {LoggedInUser} from '../types/auth';
+import {User} from '../types/auth';
 
 function useSettings() {
   const deviceTheme: ColorSchemeName = useColorScheme();
@@ -11,7 +11,7 @@ function useSettings() {
     asyncStorageKeys.theme,
   );
   const [loggedInUser, saveLoggedInUser, getLoggedInUser, clearLoggedInUser] =
-    useAsyncStorage<LoggedInUser>(asyncStorageKeys.loggedInUser);
+    useAsyncStorage<User>(asyncStorageKeys.loggedInUser);
 
   const [
     loggedInUserToken,

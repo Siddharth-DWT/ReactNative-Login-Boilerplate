@@ -14,7 +14,7 @@ import {fontSize} from '../style/constants';
 import Button from '../components/kit/button/DWTButton';
 import {useForm, Controller} from 'react-hook-form';
 import {loginFormData} from '../assets/data/formData';
-import {login} from '../api/auth';
+import {getUserById, login, resetPassword} from '../api/auth';
 import Settings from '../container/Settings';
 import PopupContainer from './PopupContainer';
 
@@ -42,8 +42,20 @@ const LogIn = (props: Props) => {
     setLoading(true);
     await login(data)
       .then(async res => {
-        if (res.success && res.user) {
-          await saveLoggedInUser(res.user);
+        if (res.success && res.user && res.user.id) {
+          await getUserById({id: res.user.id})
+            .then(async res => {
+              if (res.result) {
+                await saveLoggedInUser(res.result);
+              } else {
+                console.log('error1', res);
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {});
+
           await saveLoggedInUserToken(res.user.token);
           ToastAndroid.show(`Login Successful`, 100);
           console.log('success', res);

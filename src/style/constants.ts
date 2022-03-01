@@ -23,4 +23,9 @@ export const asyncStorageKeys = {
   loggedInUserToken: 'loggedInUserToken',
 };
 
+export const defaultAvatar =
+  'https://www.sunsetlearning.com/wp-content/uploads/2019/09/User-Icon-Grey-300x300.png';
+
 export const API_URL = 'https://node-login-portal.herokuapp.com/';
+
+// export const API_URL = 'http://localhost:8000/';

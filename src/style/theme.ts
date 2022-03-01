@@ -58,8 +58,9 @@ export type RCTheme = {
     divider: string;
     platform: Partial<PlatformColors>;
     background: string;
+    darkerBackground: string;
+    darkerBackground2: string;
     transparent: string;
-    link: string;
   };
 };
 
@@ -68,15 +69,15 @@ const lightTheme: RCTheme = {
   colors: {
     primary: '#009387',
     primaryLight: '#08d4c4',
-    primaryDark: '#01ab9d',
-    secondary: '#05375a',
+    primaryDark: '#00665e',
+    secondary: '#000000',
     secondaryLight: '#000000',
     secondaryDark: '#000000',
     textHeading: '#0d0d0d',
     textSubHeading: '#1a1a1a',
     textPara: '#262626',
     white: '#ffffff',
-    black: '#1a1a1a',
+    black: '#1a1a1a', // 10% black
     grey0: '#f2f2f2',
     grey1Light: '#e6e6e6',
     grey1Dark: '#dedede',
@@ -92,26 +93,27 @@ const lightTheme: RCTheme = {
     disabled: '#e6e6e6',
     divider: '#e6e6e6',
     platform: platformColors,
-    background: '#fff',
+    background: '#f2f2f2',
+    darkerBackground: '#e6e6e6',
+    darkerBackground2: '#d9d9d9',
     transparent: 'transparent',
-    link: '#0044cc',
   },
 };
 
 const darkTheme: RCTheme = {
   name: 'dark',
   colors: {
-    primary: '#0066ff',
-    primaryLight: '#5cd65c',
-    primaryDark: '#248f24',
+    primary: '#009387',
+    primaryLight: '#08d4c4',
+    primaryDark: '#00665e',
     secondary: '#000000',
     secondaryLight: '#000000',
     secondaryDark: '#000000',
-    textHeading: '#0d0d0d',
-    textSubHeading: '#1a1a1a',
-    textPara: '#262626',
+    textHeading: '#dedede',
+    textSubHeading: '#bfbfbf',
+    textPara: '#a6a6a6',
     white: '#ffffff',
-    black: '#1a1a1a',
+    black: '#1a1a1a', // 10% black
     grey0: '#f2f2f2',
     grey1Light: '#e6e6e6',
     grey1Dark: '#dedede',
@@ -127,9 +129,10 @@ const darkTheme: RCTheme = {
     disabled: '#e6e6e6',
     divider: '#e6e6e6',
     platform: platformColorsDark,
-    background: '#f2f2f2',
+    background: '#1a1a1a',
+    darkerBackground: '#262626',
+    darkerBackground2: '#333333',
     transparent: 'transparent',
-    link: '#0044cc',
   },
 };
 
