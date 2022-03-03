@@ -56,11 +56,11 @@ const NavHeader = (props: Props) => {
               <Icon
                 name="chevron-left"
                 size={iconSize.large}
-                color={props.textColor ?? theme?.colors?.textHeading}
+                color={props.textColor ?? theme?.colors?.h2}
                 style={styles.leftIcon}
               />
             )}
-            <Text weight="bold" size="large">
+            <Text weight="bold" type="h2">
               {props.title}
             </Text>
           </View>

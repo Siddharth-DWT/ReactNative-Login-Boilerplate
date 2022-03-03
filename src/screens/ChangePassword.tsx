@@ -32,7 +32,7 @@ const ChangePassword = (props: Props) => {
 
   const changePasswordHandler = async (data: any) => {
     setLoading(true);
-    await changePassword({...data, id: loggedInUser.id})
+    await changePassword({...data, id: loggedInUser._id})
       .then(res => {
         if (res.success) {
           ToastAndroid.show(`Password has been changed successfully`, 100);
@@ -54,7 +54,9 @@ const ChangePassword = (props: Props) => {
   return (
     <DWTView>
       <ScrollView style={styles.container}>
-        <Text style={styles.text}>Enter Details</Text>
+        <Text style={styles.text} type="h2">
+          Enter Details
+        </Text>
 
         {changePasswordData.map(item => (
           <Controller
@@ -103,7 +105,6 @@ const useStyles = makeStyles(theme => {
       paddingVertical: 4,
     },
     text: {
-      fontSize: fontSize.normal,
       padding: 8,
     },
     textinput: {

@@ -7,6 +7,8 @@ import {RCTheme} from '../style/theme';
 import {iconSize} from '../style/constants';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import VoidScreen from '../screens/VoidScreen';
+import {Settings} from '../container';
 
 const Tab = createBottomTabNavigator();
 
@@ -80,13 +82,21 @@ const TabBar = (props: any) => {
 };
 
 const BottomTab = (bottomTabProps: Props) => {
+  const {loggedInUser} = Settings.useContainer();
   return (
     <Tab.Navigator
       screenOptions={{lazy: false, headerShown: false}}
       tabBar={props => <TabBar {...props} theme={bottomTabProps.theme} />}>
-      <Tab.Screen name="Home" component={Stacks.HomeStack} />
-      <Tab.Screen name="Favourites" component={Stacks.HomeStack} />
-      <Tab.Screen name="Cart" component={Stacks.HomeStack} />
+      <Tab.Screen
+        name="Home"
+        component={
+          loggedInUser.userType !== 'admin'
+            ? Stacks.AdminHomeStack
+            : Stacks.HomeStack
+        }
+      />
+      <Tab.Screen name="Favourites" component={VoidScreen} />
+      <Tab.Screen name="Cart" component={VoidScreen} />
       <Tab.Screen name="Settings" component={Stacks.SettingStack} />
     </Tab.Navigator>
   );
@@ -94,7 +104,6 @@ const BottomTab = (bottomTabProps: Props) => {
 
 const useStyles = makeStyles(theme => {
   const DIMENSION: number = 70;
-
   return {
     tabContainer: {
       flexDirection: 'row',
@@ -113,7 +122,10 @@ const useStyles = makeStyles(theme => {
     focusedIcon: {
       alignSelf: 'center',
       fontSize: iconSize.normal,
-      color: theme.colors?.primaryDark,
+      color:
+        theme?.name == 'dark'
+          ? theme.colors.primaryLight
+          : theme.colors?.primaryDark,
     },
     tabBarLabel: {
       textAlign: 'center',
@@ -125,7 +137,7 @@ const useStyles = makeStyles(theme => {
       height: DIMENSION,
       width: DIMENSION,
       borderRadius: DIMENSION,
-      backgroundColor: theme.colors?.info,
+      backgroundColor: theme.colors?.darkerBackground,
       shadowColor: 'transparent',
     },
   };

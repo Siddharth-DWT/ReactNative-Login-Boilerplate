@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {
   View,
-  Text,
   TouchableOpacity,
   ActivityIndicator,
   ToastAndroid,
@@ -17,6 +16,7 @@ import {loginFormData} from '../assets/data/formData';
 import {getUserById, login, resetPassword} from '../api/auth';
 import Settings from '../container/Settings';
 import PopupContainer from './PopupContainer';
+import Text from '../components/kit/text/Text';
 
 type Props = {
   theme?: RCTheme;
@@ -73,7 +73,11 @@ const LogIn = (props: Props) => {
 
   return (
     <PopupContainer
-      headerComponent={<Text style={styles.textHeader}>Welcome!</Text>}
+      headerComponent={
+        <Text type="h1" size="jumboXPlus" style={styles.textHeader}>
+          Welcome!
+        </Text>
+      }
       popupComponent={
         <>
           {loginFormData.map(item => (
@@ -96,8 +100,13 @@ const LogIn = (props: Props) => {
                       />
                     }
                     style={styles.textinput}
-                    theme={props.theme}
                     onChangeText={onChange}
+                    activeOutlineColor={theme.colors.primary}
+                    outlineColor={theme.colors.primary}
+                    underlineColor={theme.colors.primary}
+                    selectionColor={theme.colors.primary}
+                    activeUnderlineColor={theme.colors.primary}
+                    placeholderTextColor={theme.colors.error}
                   />
                 </>
               )}
@@ -140,9 +149,7 @@ const LogIn = (props: Props) => {
 const useStyles = makeStyles(theme => {
   return {
     textHeader: {
-      color: theme.colors.white,
       fontWeight: 'bold',
-      fontSize: fontSize.jumboPlus,
     },
     textinput: {
       marginVertical: 8,

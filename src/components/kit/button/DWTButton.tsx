@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme, props: Props) => {
     titleStyle: {
       color: ['outline', 'clear'].includes(props.type ?? '')
         ? buttonColor
-        : theme.colors?.white,
+        : theme.colors?.h1,
       fontSize: fontSize[props.buttonSize ?? 'normal'],
     },
 

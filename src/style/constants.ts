@@ -7,14 +7,14 @@ export const iconSize = {
 };
 
 export const fontSize = {
-  extraSmall: 12,
-  small: 14,
+  extraSmall: 10,
+  small: 12,
   normal: 16,
-  large: 20,
-  extraLarge: 24,
-  jumbo: 28,
-  jumboPlus: 40,
-  jumboXPlus: 70,
+  large: 18,
+  extraLarge: 22,
+  jumbo: 24,
+  jumboPlus: 26,
+  jumboXPlus: 30,
 };
 
 export const asyncStorageKeys = {

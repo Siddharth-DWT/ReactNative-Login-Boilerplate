@@ -37,9 +37,6 @@ export type RCTheme = {
     secondary: string;
     secondaryLight: string;
     secondaryDark: string;
-    textHeading: string;
-    textSubHeading: string;
-    textPara: string;
     white: string;
     black: string;
     grey0: string;
@@ -51,6 +48,11 @@ export type RCTheme = {
     grey4: string;
     grey5: string;
     info: string;
+    h1: string;
+    h2: string;
+    h3: string;
+    h4: string;
+    h5: string;
     success: string;
     error: string;
     warning: string;
@@ -67,15 +69,17 @@ export type RCTheme = {
 const lightTheme: RCTheme = {
   name: 'light',
   colors: {
-    primary: '#009387',
-    primaryLight: '#08d4c4',
-    primaryDark: '#00665e',
+    primaryLight: '#06ac9e',
+    primary: '#059488',
+    primaryDark: '#007067',
     secondary: '#000000',
     secondaryLight: '#000000',
     secondaryDark: '#000000',
-    textHeading: '#0d0d0d',
-    textSubHeading: '#1a1a1a',
-    textPara: '#262626',
+    h1: '#000000',
+    h2: '#262626',
+    h3: '#333333',
+    h4: '#4d4d4d',
+    h5: '#666666',
     white: '#ffffff',
     black: '#1a1a1a', // 10% black
     grey0: '#f2f2f2',
@@ -103,15 +107,17 @@ const lightTheme: RCTheme = {
 const darkTheme: RCTheme = {
   name: 'dark',
   colors: {
-    primary: '#009387',
     primaryLight: '#08d4c4',
-    primaryDark: '#00665e',
+    primary: '#00b3a4',
+    primaryDark: '#008075',
     secondary: '#000000',
     secondaryLight: '#000000',
     secondaryDark: '#000000',
-    textHeading: '#dedede',
-    textSubHeading: '#bfbfbf',
-    textPara: '#a6a6a6',
+    h1: '#f2f2f2',
+    h2: '#e6e6e6',
+    h3: '#bfbfbf',
+    h4: '#8c8c8c',
+    h5: '#737373',
     white: '#ffffff',
     black: '#1a1a1a', // 10% black
     grey0: '#f2f2f2',
@@ -119,7 +125,7 @@ const darkTheme: RCTheme = {
     grey1Dark: '#dedede',
     grey1: '#d9d9d9',
     grey2: '#bfbfbf',
-    grey3: '#a6a6a6',
+    grey3: '#bfbfbf',
     grey4: '#8c8c8c',
     grey5: '#737373',
     info: '#e6e6e6',
@@ -129,7 +135,7 @@ const darkTheme: RCTheme = {
     disabled: '#e6e6e6',
     divider: '#e6e6e6',
     platform: platformColorsDark,
-    background: '#1a1a1a',
+    background: '#1a1a1a', //#1a1a1a
     darkerBackground: '#262626',
     darkerBackground2: '#333333',
     transparent: 'transparent',

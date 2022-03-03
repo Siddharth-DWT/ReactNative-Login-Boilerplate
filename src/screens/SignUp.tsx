@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ScrollView, ToastAndroid, View, ActivityIndicator} from 'react-native';
 import {TextInput} from 'react-native-paper';
-import {makeStyles, ThemeConsumer, withTheme} from 'react-native-elements';
+import {makeStyles, withTheme} from 'react-native-elements';
 import {fontSize} from '../style/constants';
 import {RCTheme} from '../style/theme';
 import {signupFormData} from '../assets/data/formData';

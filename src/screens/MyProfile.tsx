@@ -10,20 +10,13 @@ import * as Container from '../container';
 import {update} from '../api/auth';
 import Button from '../components/kit/button/DWTButton';
 import Text from '../components/kit/text/Text';
-import {TextInput} from 'react-native-paper';
 import {EditUserBody} from '../types/auth';
-
+import {editProfile} from '../assets/data/formData';
+import {TextInput} from 'react-native-paper';
 type Props = {
   theme?: RCTheme;
   route: any;
 };
-
-const inputs = [
-  {name: 'name', title: 'Name', required: false},
-  {name: 'email', title: 'Email', required: false},
-  {name: 'gender', title: 'Gender', required: false},
-  {name: 'phone', title: 'Phone', required: false},
-];
 
 const MyProfile = (props: Props) => {
   const styles = useStyles(props);
@@ -44,16 +37,14 @@ const MyProfile = (props: Props) => {
       gender: user?.gender,
     },
   });
-
   const onPressHandler = async (data: EditUserBody) => {
     console.log('edit user api is not ready');
-    console.log(data);
     setLoading(true);
     if (user) {
       update({...data, id: user._id})
         .then(async res => {
-          if (res) {
-            // await saveLoggedInUser(res?.data.user);
+          if (!res.error) {
+            await saveLoggedInUser(res?.data.user);
             console.log('updated res', res);
             Snackbar.show({
               text: 'Profile has been updated successfully',
@@ -71,8 +62,8 @@ const MyProfile = (props: Props) => {
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <DWTView style={styles.container}>
+    <DWTView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <ProfileIcon
           onPressIcon={() => null}
           iconName="camera"
@@ -81,11 +72,11 @@ const MyProfile = (props: Props) => {
           item={user}
         />
         <View style={styles.textContainer}>
-          <Text size="extraLarge" color="textHeading">
-            {`${user?.name}`}
+          <Text size="extraLarge" color="h1">
+            {user?.name}
           </Text>
-          <Text size="normal" color="textPara">
-            {`0${user?.phone}`}
+          <Text size="small" color="h3">
+            {user?.email}
           </Text>
         </View>
         {loading ? (
@@ -95,24 +86,24 @@ const MyProfile = (props: Props) => {
           />
         ) : (
           <>
-            {inputs.map(item => (
+            {editProfile.map(field => (
               <Controller
-                key={item.name}
-                name={item.name}
+                key={field.name}
+                name={field.name}
                 control={control}
                 rules={{
-                  required: true,
+                  required: field.required,
                 }}
-                render={({field: {onChange}}) => (
+                render={({field: {onChange, value}}) => (
                   <TextInput
-                    label={item.title}
+                    label={field.title}
                     mode="flat"
+                    value={value}
                     style={styles.textinput}
-                    theme={props.theme}
                     onChangeText={onChange}
                   />
                 )}
-                defaultValue="jamin"
+                defaultValue=""
               />
             ))}
             <Button
@@ -124,8 +115,8 @@ const MyProfile = (props: Props) => {
             />
           </>
         )}
-      </DWTView>
-    </ScrollView>
+      </ScrollView>
+    </DWTView>
   );
 };
 

@@ -63,3 +63,30 @@ export const changePassword = [
     name: 'password2',
   },
 ];
+
+export const editProfile = [
+  {
+    id: 1,
+    title: 'Name',
+    name: 'name',
+    required: false,
+  },
+  {
+    id: 2,
+    title: 'Email',
+    name: 'email',
+    required: false,
+  },
+  {
+    id: 3,
+    title: 'Phone',
+    name: 'phone',
+    required: false,
+  },
+  {
+    id: 4,
+    title: 'Gender',
+    name: 'gender',
+    required: false,
+  },
+];

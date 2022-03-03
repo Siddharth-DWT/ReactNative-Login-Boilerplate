@@ -10,14 +10,18 @@ type Props = {
   theme?: RCTheme;
 };
 
-const Home = (props: Props) => {
+const VoidScreen = (props: Props) => {
   const styles = useStyles();
 
   return (
     <DWTView>
       <ScrollView style={styles.container}>
-        <Text style={styles.text}>Home </Text>
-        <Text style={styles.text}>User Type : user </Text>
+        <Text style={styles.text} type="h2">
+          VoidScreen{' '}
+        </Text>
+        <Text style={styles.text} type="h1">
+          Created for testing{' '}
+        </Text>
       </ScrollView>
     </DWTView>
   );
@@ -30,7 +34,6 @@ const useStyles = makeStyles(() => {
       marginTop: 8,
     },
     text: {
-      fontSize: fontSize.normal,
       padding: 8,
     },
     button: {
@@ -39,4 +42,4 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export default withTheme(Home, '');
+export default withTheme(VoidScreen, '');

@@ -74,11 +74,7 @@ const Settings = (props: Props) => {
           id: 102,
           title: 'Language',
           icon: <Ionicons name="language" style={styles.icon} />,
-          rightContainer: (
-            <Text color="textPara" size="small">
-              English (India)
-            </Text>
-          ),
+          rightContainer: <Text type="h4">English (India)</Text>,
         },
       ],
     },
@@ -118,7 +114,9 @@ const Settings = (props: Props) => {
         ListHeaderComponent={
           <>
             <Avatar size="large" source={{uri: 'https://picsum.photos/200'}} />
-            <Text style={styles.versionText}>V.1.0.2</Text>
+            <Text style={styles.versionText} type="h4">
+              V.1.0.2
+            </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('MyProfile' as never)}>
               <View style={styles.profileContainer}>
@@ -131,12 +129,10 @@ const Settings = (props: Props) => {
                 />
 
                 <View style={styles.userDetailsContainer}>
-                  <Text size="normal" weight="bold">
+                  <Text type="h1" weight="bold">
                     {loggedInUser.name}
                   </Text>
-                  <Text size="extraSmall" color="textPara">
-                    edit, update profile
-                  </Text>
+                  <Text type="h4">edit, update profile</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -157,15 +153,11 @@ const useStyles = makeStyles(theme => {
     versionText: {
       textAlign: 'center',
       marginVertical: 16,
-      fontSize: fontSize.small,
-      color: theme.colors.textPara,
     },
     icon: {
       fontSize: iconSize.small,
       color: theme.colors.grey5,
     },
-
-    //
     profileContainer: {
       backgroundColor: theme.colors.darkerBackground,
       borderRadius: 8,

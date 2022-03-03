@@ -16,7 +16,11 @@ const Section = (props: Props) => {
       <FlatList
         keyExtractor={item => item.title}
         data={item.subData}
-        ListHeaderComponent={<Text color="textHeading">{item.title}</Text>}
+        ListHeaderComponent={
+          <Text color="h3" style={styles.listHeaderText}>
+            {item.title}
+          </Text>
+        }
         renderItem={({item}) => (
           <TouchableWithoutFeedback onPress={item.onPress}>
             <View style={styles.flatListContainer}>
@@ -25,7 +29,8 @@ const Section = (props: Props) => {
                 <Text
                   numberOfLines={1}
                   ellipsizeMode="tail"
-                  color="textSubHeading"
+                  type="h3"
+                  color="h4"
                   style={styles.subItemTitle}>
                   {item.title}
                 </Text>
@@ -50,6 +55,9 @@ const useStyles = makeStyles(theme => {
       paddingVertical: 4,
       marginHorizontal: 16,
       marginVertical: 6,
+    },
+    listHeaderText: {
+      paddingTop: 8,
     },
     flatListContainer: {
       flexDirection: 'row',
