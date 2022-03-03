@@ -7,8 +7,8 @@ export const iconSize = {
 };
 
 export const fontSize = {
-  extraSmall: 10,
-  small: 12,
+  extraSmall: 12,
+  small: 14,
   normal: 16,
   large: 18,
   extraLarge: 22,

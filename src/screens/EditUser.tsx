@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
 import {editProfile} from '../assets/data/formData';
 import {TextInput} from 'react-native-paper';
-import Button from '../components/kit/button/DWTButton';
+import {Button} from 'react-native-paper';
 import {EditUserBody, User} from '../types/auth';
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 
 const EditUser = (props: Props) => {
   const styles = useStyles();
-  const {user} = props;
+  const {user, theme} = props;
   const navigation = useNavigation();
   const {
     control,
@@ -44,8 +44,8 @@ const EditUser = (props: Props) => {
     //         Snackbar.show({
     //           text: 'Profile has been updated successfully',
     //           duration: Snackbar.LENGTH_SHORT,
-    //           backgroundColor: props.theme?.colors?.primary,
-    //           textColor: props.theme?.colors?.white,
+    //           backgroundColor: theme?.colors?.primary,
+    //           textColor: theme?.colors?.white,
     //         });
     //       } else {
     //         throw res;
@@ -72,7 +72,17 @@ const EditUser = (props: Props) => {
                 mode="flat"
                 value={value}
                 style={styles.textinput}
-                theme={props.theme}
+                theme={{
+                  colors: {
+                    primary: theme.colors.primary,
+                    text: theme.colors.h1,
+                    placeholder: theme.colors.h3,
+                    background:
+                      theme?.name === 'dark'
+                        ? theme.colors.darkerBackground2
+                        : theme.colors.grey0,
+                  },
+                }}
                 onChangeText={onChange}
               />
             )}
@@ -80,13 +90,12 @@ const EditUser = (props: Props) => {
           />
         ))}
         <Button
-          title="Save"
-          rounded={true}
-          shadow={true}
-          // onPress={handleSubmit(onPressHandler)}
           onPress={handleSubmit(onPressHandler)}
-          containerStyle={styles.button}
-        />
+          style={styles.button}
+          mode="contained"
+          theme={theme}>
+          SAVE
+        </Button>
       </ScrollView>
     </DWTView>
   );
@@ -98,12 +107,12 @@ const useStyles = makeStyles(() => {
       marginHorizontal: 16,
       marginTop: 8,
     },
-
     textinput: {
       marginVertical: 8,
     },
     button: {
       marginVertical: 8,
+      borderRadius: 8,
     },
   };
 });

@@ -6,7 +6,7 @@ import {fontSize} from '../style/constants';
 import {RCTheme} from '../style/theme';
 import {signupFormData} from '../assets/data/formData';
 import DWTView from '../components/kit/view/DWTView';
-import Button from '../components/kit/button/DWTButton';
+import {Button} from 'react-native-paper';
 import Text from '../components/kit/text/Text';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
@@ -17,6 +17,7 @@ type Props = {
 };
 const SignUp = (props: Props) => {
   const styles = useStyles();
+  const {theme} = props;
   const navigation = useNavigation();
   const {
     control,
@@ -26,7 +27,6 @@ const SignUp = (props: Props) => {
     defaultValues: {},
   });
   const [isLoading, setLoading] = useState<boolean>(false);
-
   const signupHandler = async (data: any) => {
     setLoading(true);
     await create(data)
@@ -66,13 +66,23 @@ const SignUp = (props: Props) => {
                 label={item.title}
                 mode="flat"
                 style={styles.textinput}
-                theme={props.theme}
+                theme={{
+                  colors: {
+                    primary: theme.colors.primary,
+                    text: theme.colors.h1,
+                    placeholder: theme.colors.h3,
+                    background:
+                      theme?.name === 'dark'
+                        ? theme.colors.darkerBackground2
+                        : theme.colors.grey0,
+                  },
+                }}
                 onChangeText={onChange}
               />
             )}
           />
         ))}
-        <Text style={styles.forgotAcText}>
+        <Text style={styles.forgotAcText} type="h4">
           Already have an account ?
           <Text
             color="link"
@@ -82,18 +92,19 @@ const SignUp = (props: Props) => {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <Button
+          {isLoading ? (
+            <ActivityIndicator color={props.theme?.colors.white} />
+          ) : (
+            <Button theme={props.theme} mode="contained" style={styles.button}>
+              Create Account
+            </Button>
+          )}
+          {/* <Button
             containerStyle={[styles.button, {padding: 0}]}
             rounded
             onPress={handleSubmit(signupHandler)}
-            title={
-              isLoading ? (
-                <ActivityIndicator color={props.theme?.colors.white} />
-              ) : (
-                'Sign Up'
-              )
-            }
-          />
+            title={}
+          /> */}
         </View>
       </ScrollView>
     </DWTView>
@@ -107,8 +118,9 @@ const useStyles = makeStyles(theme => {
       paddingVertical: 8,
     },
     button: {
-      paddingVertical: 4,
       marginBottom: 32,
+      borderRadius: 8,
+      width: '100%',
     },
     buttonContainer: {
       flexDirection: 'row',
@@ -120,9 +132,7 @@ const useStyles = makeStyles(theme => {
     },
     forgotAcText: {
       textAlign: 'center',
-      fontSize: fontSize.normal,
       marginVertical: 16,
-      color: theme.colors.textSubHeading,
     },
     textinput: {
       marginVertical: 8,

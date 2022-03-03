@@ -5,7 +5,7 @@ import {makeStyles, withTheme} from 'react-native-elements';
 import {fontSize} from '../style/constants';
 import {RCTheme} from '../style/theme';
 import DWTView from '../components/kit/view/DWTView';
-import Button from '../components/kit/button/DWTButton';
+import {Button} from 'react-native-paper';
 import Text from '../components/kit/text/Text';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
@@ -16,6 +16,7 @@ type Props = {
 };
 const ForgotPassword = (props: Props) => {
   const styles = useStyles();
+  const {theme} = props;
   const {
     control,
     handleSubmit,
@@ -71,23 +72,32 @@ const ForgotPassword = (props: Props) => {
                 />
               }
               style={styles.textinput}
-              theme={{colors: props.theme.colors}}
+              theme={{
+                colors: {
+                  primary: theme.colors.primary,
+                  text: theme.colors.h1,
+                  placeholder: theme.colors.h3,
+                  background:
+                    theme?.name === 'dark'
+                      ? theme.colors.darkerBackground2
+                      : theme.colors.grey1Light,
+                },
+              }}
               onChangeText={onChange}
             />
           )}
         />
-        <Button
-          title={
-            isLoading ? (
-              <ActivityIndicator color={props.theme?.colors.white} />
-            ) : (
-              'Send Link'
-            )
-          }
-          containerStyle={styles.button}
-          rounded
-          onPress={handleSubmit(loginHandler)}
-        />
+        {isLoading ? (
+          <ActivityIndicator color={props.theme?.colors.white} />
+        ) : (
+          <Button
+            theme={theme}
+            mode="contained"
+            style={styles.button}
+            onPress={handleSubmit(loginHandler)}>
+            {`Send Email`}
+          </Button>
+        )}
       </ScrollView>
     </DWTView>
   );
@@ -100,7 +110,8 @@ const useStyles = makeStyles(() => {
       marginTop: 8,
     },
     button: {
-      paddingVertical: 4,
+      marginVertical: 4,
+      borderRadius: 8,
     },
     buttonContainer: {
       flexDirection: 'row',

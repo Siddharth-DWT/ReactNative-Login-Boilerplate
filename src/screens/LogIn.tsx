@@ -10,13 +10,13 @@ import {RCTheme} from '../style/theme';
 import {useNavigation} from '@react-navigation/native';
 import {withTheme, makeStyles} from 'react-native-elements';
 import {fontSize} from '../style/constants';
-import Button from '../components/kit/button/DWTButton';
 import {useForm, Controller} from 'react-hook-form';
 import {loginFormData} from '../assets/data/formData';
 import {getUserById, login, resetPassword} from '../api/auth';
 import Settings from '../container/Settings';
 import PopupContainer from './PopupContainer';
 import Text from '../components/kit/text/Text';
+import {Button} from 'react-native-paper';
 
 type Props = {
   theme?: RCTheme;
@@ -74,7 +74,11 @@ const LogIn = (props: Props) => {
   return (
     <PopupContainer
       headerComponent={
-        <Text type="h1" size="jumboXPlus" style={styles.textHeader}>
+        <Text
+          type="h1"
+          color="white"
+          size="jumboXPlus"
+          style={styles.textHeader}>
           Welcome!
         </Text>
       }
@@ -120,25 +124,26 @@ const LogIn = (props: Props) => {
             </Text>
           </TouchableOpacity>
           <View style={styles.button}>
-            <Button
-              title={
-                isLoading ? (
-                  <ActivityIndicator color={props.theme.colors.white} />
-                ) : (
-                  'Log In'
-                )
-              }
-              containerStyle={styles.button}
-              rounded
-              onPress={handleSubmit(loginHandler)}
-            />
-            <Button
-              title="Sign Up"
-              type="outline"
-              containerStyle={styles.button}
-              rounded
-              onPress={() => navigation.navigate('SignUp' as never)}
-            />
+            {isLoading ? (
+              <ActivityIndicator color={props.theme.colors.primary} />
+            ) : (
+              <>
+                <Button
+                  theme={theme}
+                  mode="contained"
+                  style={styles.button}
+                  onPress={handleSubmit(loginHandler)}>
+                  {`Log In`}
+                </Button>
+                <Button
+                  theme={theme}
+                  mode="text"
+                  style={styles.button}
+                  onPress={() => navigation.navigate('SignUp' as never)}>
+                  {`Sign Up`}
+                </Button>
+              </>
+            )}
           </View>
         </>
       }
@@ -159,7 +164,8 @@ const useStyles = makeStyles(theme => {
       alignSelf: 'center',
     },
     button: {
-      marginVertical: 8,
+      marginVertical: 4,
+      borderRadius: 8,
     },
   };
 });

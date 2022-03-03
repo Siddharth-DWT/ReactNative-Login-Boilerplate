@@ -8,11 +8,10 @@ import DWTView from '../components/kit/view/DWTView';
 import {useForm, Controller} from 'react-hook-form';
 import * as Container from '../container';
 import {update} from '../api/auth';
-import Button from '../components/kit/button/DWTButton';
 import Text from '../components/kit/text/Text';
 import {EditUserBody} from '../types/auth';
 import {editProfile} from '../assets/data/formData';
-import {TextInput} from 'react-native-paper';
+import {Button, TextInput} from 'react-native-paper';
 type Props = {
   theme?: RCTheme;
   route: any;
@@ -99,6 +98,17 @@ const MyProfile = (props: Props) => {
                     label={field.title}
                     mode="flat"
                     value={value}
+                    theme={{
+                      colors: {
+                        primary: theme.colors.primary,
+                        text: theme.colors.h1,
+                        placeholder: theme.colors.h3,
+                        background:
+                          theme?.name === 'dark'
+                            ? theme.colors.darkerBackground2
+                            : theme.colors.grey0,
+                      },
+                    }}
                     style={styles.textinput}
                     onChangeText={onChange}
                   />
@@ -106,13 +116,14 @@ const MyProfile = (props: Props) => {
                 defaultValue=""
               />
             ))}
+
             <Button
-              title="Save"
-              rounded={true}
-              shadow={true}
-              onPress={handleSubmit(onPressHandler)}
-              containerStyle={styles.button}
-            />
+              theme={theme}
+              mode="contained"
+              style={styles.button}
+              onPress={handleSubmit(onPressHandler)}>
+              Save
+            </Button>
           </>
         )}
       </ScrollView>
@@ -120,13 +131,12 @@ const MyProfile = (props: Props) => {
   );
 };
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles(theme => {
   return {
     container: {
       flex: 1,
       paddingHorizontal: 16,
     },
-
     textContainer: {
       alignItems: 'center',
       marginBottom: 10,
@@ -138,6 +148,7 @@ const useStyles = makeStyles(() => {
     },
     button: {
       marginVertical: 8,
+      borderRadius: 8,
     },
     textinput: {
       marginVertical: 8,

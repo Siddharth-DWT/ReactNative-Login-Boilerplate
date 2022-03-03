@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import {ScrollView, ToastAndroid, ActivityIndicator} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {makeStyles, withTheme} from 'react-native-elements';
-import {fontSize} from '../style/constants';
 import {RCTheme} from '../style/theme';
 import {changePassword as changePasswordData} from '../assets/data/formData';
 import DWTView from '../components/kit/view/DWTView';
-import Button from '../components/kit/button/DWTButton';
+import {Button} from 'react-native-paper';
 import Text from '../components/kit/text/Text';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
@@ -18,6 +17,7 @@ type Props = {
 };
 
 const ChangePassword = (props: Props) => {
+  const {theme} = props;
   const styles = useStyles();
   const navigation = useNavigation();
   const {loggedInUser} = Settings.useContainer();
@@ -69,27 +69,36 @@ const ChangePassword = (props: Props) => {
             render={({field: {onChange}}) => (
               <TextInput
                 label={item.title}
-                mode="outlined"
+                mode="flat"
                 style={styles.textinput}
-                theme={{colors: props.theme.colors}}
+                theme={{
+                  colors: {
+                    primary: theme.colors.primary,
+                    text: theme.colors.h1,
+                    placeholder: theme.colors.h3,
+                    background:
+                      theme?.name === 'dark'
+                        ? theme.colors.darkerBackground2
+                        : theme.colors.grey0,
+                  },
+                }}
                 onChangeText={onChange}
               />
             )}
           />
         ))}
 
-        <Button
-          containerStyle={[styles.button, {padding: 0}]}
-          rounded
-          onPress={handleSubmit(changePasswordHandler)}
-          title={
-            isLoading ? (
-              <ActivityIndicator color={props.theme?.colors.white} />
-            ) : (
-              'Change Password'
-            )
-          }
-        />
+        {isLoading ? (
+          <ActivityIndicator color={props.theme?.colors.white} />
+        ) : (
+          <Button
+            theme={theme}
+            mode="contained"
+            style={styles.button}
+            onPress={handleSubmit(changePasswordHandler)}>
+            {`Change Password`}
+          </Button>
+        )}
       </ScrollView>
     </DWTView>
   );
@@ -101,14 +110,15 @@ const useStyles = makeStyles(theme => {
       marginHorizontal: 16,
       marginTop: 8,
     },
-    button: {
-      paddingVertical: 4,
-    },
     text: {
       padding: 8,
     },
     textinput: {
       marginVertical: 8,
+    },
+    button: {
+      marginVertical: 4,
+      borderRadius: 8,
     },
   };
 });

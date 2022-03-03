@@ -78,7 +78,7 @@ const lightTheme: RCTheme = {
     h1: '#000000',
     h2: '#262626',
     h3: '#333333',
-    h4: '#4d4d4d',
+    h4: '#8c8c8c',
     h5: '#666666',
     white: '#ffffff',
     black: '#1a1a1a', // 10% black

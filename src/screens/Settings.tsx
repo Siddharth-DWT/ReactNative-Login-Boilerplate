@@ -156,7 +156,7 @@ const useStyles = makeStyles(theme => {
     },
     icon: {
       fontSize: iconSize.small,
-      color: theme.colors.grey5,
+      color: theme.colors.grey4,
     },
     profileContainer: {
       backgroundColor: theme.colors.darkerBackground,

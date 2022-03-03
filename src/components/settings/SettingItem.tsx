@@ -30,7 +30,7 @@ const Section = (props: Props) => {
                   numberOfLines={1}
                   ellipsizeMode="tail"
                   type="h3"
-                  color="h4"
+                  color="h3"
                   style={styles.subItemTitle}>
                   {item.title}
                 </Text>
