@@ -1,7 +1,7 @@
 import React from 'react';
-import {fontSize} from '../../../style/constants';
 import {makeStyles, withTheme} from 'react-native-elements';
 import {Text as RNText, TextProps} from 'react-native';
+import {fontSize} from '../../../style/constants';
 
 type Props = TextProps & {
   size?:
@@ -18,12 +18,15 @@ type Props = TextProps & {
   color?:
     | 'white'
     | 'dark'
-    | 'textHeading'
-    | 'textSubHeading'
-    | 'textPara'
     | 'success'
     | 'error'
-    | 'link';
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5';
+
+  type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 };
 
 const Text = (props: Props) => {
@@ -32,7 +35,32 @@ const Text = (props: Props) => {
 };
 
 const useStyles = makeStyles((theme, props: Props) => {
-  let fontWeight = 'normal';
+  let fontWeight: any;
+  let customFontSize: any;
+  let customFontColor: any;
+
+  switch (props.type) {
+    case 'h1':
+      customFontSize = fontSize.extraLarge;
+      customFontColor = theme.colors.h1;
+      break;
+    case 'h2':
+      customFontSize = fontSize.large;
+      customFontColor = theme.colors.h2;
+      break;
+    case 'h3':
+      customFontSize = fontSize.normal;
+      customFontColor = theme.colors.h3;
+      break;
+    case 'h4':
+      customFontSize = fontSize.small;
+      customFontColor = theme.colors.h4;
+      break;
+    case 'h5':
+      customFontSize = fontSize.extraSmall;
+      customFontColor = theme.colors.h5;
+      break;
+  }
   switch (props.weight) {
     case 'thinnest':
       fontWeight = '100';
@@ -44,7 +72,7 @@ const useStyles = makeStyles((theme, props: Props) => {
       fontWeight = '400';
       break;
     case 'bold':
-      fontWeight = 'bold';
+      fontWeight = '500';
       break;
     case 'extraBold':
       fontWeight = '900';
@@ -53,10 +81,16 @@ const useStyles = makeStyles((theme, props: Props) => {
       fontWeight = '400';
       break;
   }
+  if (props.color) {
+    customFontColor = theme.colors[`${props.color}`];
+  }
+  if (props.size) {
+    customFontSize = fontSize[`${props.size}`];
+  }
   return {
     textStyle: {
-      color: theme.colors?.[props.color ?? 'textPara'],
-      fontSize: fontSize[props.size ?? 'normal'],
+      color: customFontColor,
+      fontSize: customFontSize,
       fontStyle: props.fontStyle ?? 'normal',
       fontWeight: fontWeight,
     },

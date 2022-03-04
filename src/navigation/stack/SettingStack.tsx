@@ -1,21 +1,30 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from '../../screens/Home';
 import ChangePassword from '../../screens/ChangePassword';
 import NavHeader from '../../components/kit/NavHeader';
+import {Settings, MyProfile} from '../../screens';
 
 const Stack = createNativeStackNavigator();
 
-const AuthorizedStack = () => {
+const SettingStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="SettingScreen"
+        component={Settings}
         options={{
           headerShown: false,
         }}
       />
+
+      <Stack.Screen
+        name="MyProfile"
+        component={MyProfile}
+        options={{
+          header: () => <NavHeader title="My Profile" />,
+        }}
+      />
+
       <Stack.Screen
         name="ChangePassword"
         component={ChangePassword}
@@ -27,4 +36,4 @@ const AuthorizedStack = () => {
   );
 };
 
-export default AuthorizedStack;
+export default SettingStack;

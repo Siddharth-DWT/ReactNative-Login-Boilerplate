@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useEffect} from 'react';
 import {
   View,
@@ -9,14 +8,15 @@ import {
 import {makeStyles, useTheme, withTheme} from 'react-native-elements';
 import {IconNode} from 'react-native-elements/dist/icons/Icon';
 import Icon from 'react-native-vector-icons/Entypo';
-import {RCTheme} from '../../style/theme';
+import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {DWTTheme} from '../../style/theme';
 import StatusBar from '../kit/StatusBar';
 import {iconSize} from '../../style/constants';
 import Text from './text/Text';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
   onBackPress?: () => void;
   title: string;
   rightIcon?: IconNode;
@@ -27,7 +27,7 @@ type Props = {
 
 const NavHeader = (props: Props) => {
   const navigation = useNavigation();
-  const {theme} = useTheme();
+  const {theme} = props;
   const defaultbackHandler = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
@@ -56,11 +56,11 @@ const NavHeader = (props: Props) => {
               <Icon
                 name="chevron-left"
                 size={iconSize.large}
-                color={props.textColor ?? theme?.colors?.textHeading}
+                color={props.textColor ?? theme?.colors?.h2}
                 style={styles.leftIcon}
               />
             )}
-            <Text weight="bold" size="large">
+            <Text weight="bold" type="h2">
               {props.title}
             </Text>
           </View>
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme, props: Props) => {
       alignItems: 'center',
     },
     leftIcon: {
-      paddingHorizontal: 16,
+      paddingHorizontal: 8,
     },
     rightIconContainer: {
       justifyContent: 'center',

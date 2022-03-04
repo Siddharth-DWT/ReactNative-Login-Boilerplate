@@ -28,7 +28,7 @@ const platformColorsDark: Partial<PlatformColors> = {
   warning: '#ffc107',
 };
 
-export type RCTheme = {
+export type DWTTheme = {
   name: string;
   colors: {
     primary: string;
@@ -37,9 +37,6 @@ export type RCTheme = {
     secondary: string;
     secondaryLight: string;
     secondaryDark: string;
-    textHeading: string;
-    textSubHeading: string;
-    textPara: string;
     white: string;
     black: string;
     grey0: string;
@@ -51,6 +48,11 @@ export type RCTheme = {
     grey4: string;
     grey5: string;
     info: string;
+    h1: string;
+    h2: string;
+    h3: string;
+    h4: string;
+    h5: string;
     success: string;
     error: string;
     warning: string;
@@ -58,25 +60,28 @@ export type RCTheme = {
     divider: string;
     platform: Partial<PlatformColors>;
     background: string;
+    darkerBackground: string;
+    darkerBackground2: string;
     transparent: string;
-    link: string;
   };
 };
 
-const lightTheme: RCTheme = {
+const lightTheme: DWTTheme = {
   name: 'light',
   colors: {
-    primary: '#009387',
-    primaryLight: '#08d4c4',
-    primaryDark: '#01ab9d',
-    secondary: '#05375a',
+    primaryLight: '#06ac9e',
+    primary: '#059488',
+    primaryDark: '#007067',
+    secondary: '#000000',
     secondaryLight: '#000000',
     secondaryDark: '#000000',
-    textHeading: '#0d0d0d',
-    textSubHeading: '#1a1a1a',
-    textPara: '#262626',
+    h1: '#000000',
+    h2: '#262626',
+    h3: '#333333',
+    h4: '#8c8c8c',
+    h5: '#666666',
     white: '#ffffff',
-    black: '#1a1a1a',
+    black: '#1a1a1a', // 10% black
     grey0: '#f2f2f2',
     grey1Light: '#e6e6e6',
     grey1Dark: '#dedede',
@@ -92,32 +97,35 @@ const lightTheme: RCTheme = {
     disabled: '#e6e6e6',
     divider: '#e6e6e6',
     platform: platformColors,
-    background: '#fff',
+    background: '#f2f2f2',
+    darkerBackground: '#e6e6e6',
+    darkerBackground2: '#d9d9d9',
     transparent: 'transparent',
-    link: '#0044cc',
   },
 };
 
-const darkTheme: RCTheme = {
+const darkTheme: DWTTheme = {
   name: 'dark',
   colors: {
-    primary: '#0066ff',
-    primaryLight: '#5cd65c',
-    primaryDark: '#248f24',
+    primaryLight: '#08d4c4',
+    primary: '#00b3a4',
+    primaryDark: '#008075',
     secondary: '#000000',
     secondaryLight: '#000000',
     secondaryDark: '#000000',
-    textHeading: '#0d0d0d',
-    textSubHeading: '#1a1a1a',
-    textPara: '#262626',
+    h1: '#f2f2f2',
+    h2: '#e6e6e6',
+    h3: '#bfbfbf',
+    h4: '#8c8c8c',
+    h5: '#737373',
     white: '#ffffff',
-    black: '#1a1a1a',
+    black: '#1a1a1a', // 10% black
     grey0: '#f2f2f2',
     grey1Light: '#e6e6e6',
     grey1Dark: '#dedede',
     grey1: '#d9d9d9',
     grey2: '#bfbfbf',
-    grey3: '#a6a6a6',
+    grey3: '#bfbfbf',
     grey4: '#8c8c8c',
     grey5: '#737373',
     info: '#e6e6e6',
@@ -127,9 +135,10 @@ const darkTheme: RCTheme = {
     disabled: '#e6e6e6',
     divider: '#e6e6e6',
     platform: platformColorsDark,
-    background: '#f2f2f2',
+    background: '#1a1a1a', //#1a1a1a
+    darkerBackground: '#262626',
+    darkerBackground2: '#333333',
     transparent: 'transparent',
-    link: '#0044cc',
   },
 };
 

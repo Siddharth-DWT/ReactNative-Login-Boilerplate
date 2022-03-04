@@ -1,26 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
-  Text,
   TouchableOpacity,
   ActivityIndicator,
   ToastAndroid,
 } from 'react-native';
-import {TextInput} from 'react-native-paper';
-import {RCTheme} from '../style/theme';
+import {TextInput, Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {withTheme, makeStyles} from 'react-native-elements';
-import {fontSize} from '../style/constants';
-import Button from '../components/kit/button/DWTButton';
 import {useForm, Controller} from 'react-hook-form';
+import {DWTTheme} from '../style/theme';
 import {loginFormData} from '../assets/data/formData';
-import {login} from '../api/auth';
+import {getUserById, login} from '../api/auth';
 import Settings from '../container/Settings';
 import PopupContainer from './PopupContainer';
+import Text from '../components/kit/text/Text';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
+
+interface FormValues {
+  email: string;
+  password: string;
+}
 
 const LogIn = (props: Props) => {
   const {theme} = props;
@@ -31,7 +34,7 @@ const LogIn = (props: Props) => {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: {
       email: 'email',
       password: 'password',
@@ -42,8 +45,20 @@ const LogIn = (props: Props) => {
     setLoading(true);
     await login(data)
       .then(async res => {
-        if (res.success && res.user) {
-          await saveLoggedInUser(res.user);
+        if (res.success && res.user && res.user.id) {
+          await getUserById({id: res.user.id})
+            .then(async res => {
+              if (res.result) {
+                await saveLoggedInUser(res.result);
+              } else {
+                console.log('error1', res);
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {});
+
           await saveLoggedInUserToken(res.user.token);
           ToastAndroid.show(`Login Successful`, 100);
           console.log('success', res);
@@ -59,9 +74,19 @@ const LogIn = (props: Props) => {
       .finally(() => setLoading(false));
   };
 
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+    };
+  }, []);
+
   return (
     <PopupContainer
-      headerComponent={<Text style={styles.textHeader}>Welcome!</Text>}
+      headerComponent={
+        <Text color="white" size="jumboXPlus" weight="bold">
+          Welcome!
+        </Text>
+      }
       popupComponent={
         <>
           {loginFormData.map(item => (
@@ -84,8 +109,13 @@ const LogIn = (props: Props) => {
                       />
                     }
                     style={styles.textinput}
-                    theme={props.theme}
                     onChangeText={onChange}
+                    activeOutlineColor={theme.colors.primary}
+                    outlineColor={theme.colors.primary}
+                    underlineColor={theme.colors.primary}
+                    selectionColor={theme.colors.primary}
+                    activeUnderlineColor={theme.colors.primary}
+                    placeholderTextColor={theme.colors.error}
                   />
                 </>
               )}
@@ -99,25 +129,26 @@ const LogIn = (props: Props) => {
             </Text>
           </TouchableOpacity>
           <View style={styles.button}>
-            <Button
-              title={
-                isLoading ? (
-                  <ActivityIndicator color={props.theme.colors.white} />
-                ) : (
-                  'Log In'
-                )
-              }
-              containerStyle={styles.button}
-              rounded
-              onPress={handleSubmit(loginHandler)}
-            />
-            <Button
-              title="Sign Up"
-              type="outline"
-              containerStyle={styles.button}
-              rounded
-              onPress={() => navigation.navigate('SignUp' as never)}
-            />
+            {isLoading ? (
+              <ActivityIndicator color={props.theme.colors.primary} />
+            ) : (
+              <>
+                <Button
+                  theme={theme}
+                  mode="contained"
+                  style={styles.button}
+                  onPress={handleSubmit(loginHandler)}>
+                  {`Log In`}
+                </Button>
+                <Button
+                  theme={theme}
+                  mode="text"
+                  style={styles.button}
+                  onPress={() => navigation.navigate('SignUp' as never)}>
+                  {`Sign Up`}
+                </Button>
+              </>
+            )}
           </View>
         </>
       }
@@ -125,13 +156,8 @@ const LogIn = (props: Props) => {
   );
 };
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles(() => {
   return {
-    textHeader: {
-      color: theme.colors.white,
-      fontWeight: 'bold',
-      fontSize: fontSize.jumboPlus,
-    },
     textinput: {
       marginVertical: 8,
     },
@@ -140,7 +166,8 @@ const useStyles = makeStyles(theme => {
       alignSelf: 'center',
     },
     button: {
-      marginVertical: 8,
+      marginVertical: 4,
+      borderRadius: 8,
     },
   };
 });

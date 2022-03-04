@@ -1,10 +1,10 @@
 import React from 'react';
 import {withTheme} from 'react-native-elements';
-import {RCTheme} from '../../style/theme';
+import {DWTTheme} from '../../style/theme';
 import {StatusBar as RNStatusBar} from 'react-native';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
   background?: string;
   style?: 'light-content' | 'dark-content';
 };

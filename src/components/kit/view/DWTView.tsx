@@ -1,5 +1,4 @@
 import React from 'react';
-import {withTheme, makeStyles} from 'react-native-elements';
 import {
   KeyboardAvoidingView,
   StyleProp,
@@ -8,10 +7,10 @@ import {
   Platform,
   View,
 } from 'react-native';
+import {withTheme, makeStyles} from 'react-native-elements';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import StatusBar from '../StatusBar';
-import {ThemeProvider} from '@react-navigation/native';
 
 type DWTViewProps = ViewProps & {
   padded?: boolean;

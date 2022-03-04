@@ -11,6 +11,7 @@ import {
   SignUpBody,
   UpdateBody,
   UpdateResponse,
+  UserResponse,
 } from '../types/auth';
 
 const apiClient = new ApiClient();
@@ -33,13 +34,15 @@ export const resetPassword: (
 
 export const changePassword: (
   body: ChangePasswordBody,
-) => Promise<ChangePasswordResponse> = body => {
-  console.log(`user/change-password/${body.id}`);
-  return apiClient.put(`user/change-password/${body.id}`, body);
-};
+) => Promise<ChangePasswordResponse> = body =>
+  apiClient.put(`user/change-password/${body.id}`, body);
+
+export const getUserById: (body: {
+  id: string;
+}) => Promise<UserResponse> = body => apiClient.get(`user/${body.id}`, body);
 
 export const update: (body: UpdateBody) => Promise<UpdateResponse> = body =>
-  apiClient.put('user/update', body);
+  apiClient.put(`${body.id}`, body);
 
 export const deleteUser: (body: {userId: string}) => Promise<any> = body =>
   apiClient.delete(`user/${body.userId}`, body);
