@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, View} from 'react-native';
-import {makeStyles, ThemeConsumer, withTheme} from 'react-native-elements';
+import {makeStyles, withTheme} from 'react-native-elements';
 import DWTView from '../components/kit/view/DWTView';
 import Text from '../components/kit/text/Text';
 import {RCTheme} from '../style/theme';
@@ -64,24 +64,6 @@ const AdminHome = (props: Props) => {
             </View>
           );
         })}
-        {/* <View
-          style={{
-            height: 100,
-            width: 100,
-            backgroundColor: props.theme.colors.primaryLight,
-          }}></View>
-        <View
-          style={{
-            height: 100,
-            width: 100,
-            backgroundColor: props.theme.colors.primary,
-          }}></View>
-        <View
-          style={{
-            height: 100,
-            width: 100,
-            backgroundColor: props.theme.colors.primaryDark,
-          }}></View> */}
       </ScrollView>
     </DWTView>
   );

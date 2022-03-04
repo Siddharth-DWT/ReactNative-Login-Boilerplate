@@ -36,6 +36,8 @@ const MyProfile = (props: Props) => {
       gender: user?.gender,
     },
   });
+  console.log('myprofile user', user);
+
   const onPressHandler = async (data: EditUserBody) => {
     console.log('edit user api is not ready');
     setLoading(true);
