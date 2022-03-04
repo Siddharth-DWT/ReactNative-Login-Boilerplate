@@ -1,9 +1,8 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import AdminHome from '../../screens/AdminHome';
-import EditUser from '../../screens/EditUser';
-import NavHeader from '../../components/kit/NavHeader';
 import {Dimensions} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {AdminHome, EditUser} from '../../screens';
+import NavHeader from '../../components/kit/NavHeader';
 import DeleteModal from '../../components/kit/modal/DeleteModal';
 
 const Stack = createNativeStackNavigator();
@@ -55,7 +54,6 @@ const HomeStack = () => {
           ),
         }}
       />
-
       <Stack.Screen
         name="DeleteModal"
         options={modalOptions}

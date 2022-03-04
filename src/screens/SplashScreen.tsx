@@ -4,14 +4,14 @@ import {withTheme, makeStyles} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MIcons from 'react-native-vector-icons/MaterialIcons';
-import {RCTheme} from '../style/theme';
+import {DWTTheme} from '../style/theme';
 import Text from '../components/kit/text/Text';
 import {iconSize} from '../style/constants';
 import {useNavigation} from '@react-navigation/native';
 import PopupContainer from './PopupContainer';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
 const SplashScreen = (props: Props) => {
   const styles = useStyles();

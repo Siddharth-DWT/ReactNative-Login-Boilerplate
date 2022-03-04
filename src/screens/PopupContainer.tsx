@@ -2,10 +2,10 @@ import React from 'react';
 import {View} from 'react-native';
 import {withTheme, makeStyles} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-import {RCTheme} from '../style/theme';
+import {DWTTheme} from '../style/theme';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
   headerComponent?: any;
   popupComponent?: any;
 };

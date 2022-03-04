@@ -35,9 +35,7 @@ const Section = (props: Props) => {
                   {item.title}
                 </Text>
               </View>
-              {item.rightContainer && (
-                <View style={styles.right}>{item.rightContainer}</View>
-              )}
+              {item.rightContainer && <View>{item.rightContainer}</View>}
             </View>
           </TouchableWithoutFeedback>
         )}
@@ -70,7 +68,6 @@ const useStyles = makeStyles(theme => {
       flexDirection: 'row',
       alignItems: 'center',
     },
-    right: {},
     iconWrapper: {
       padding: 8,
       borderRadius: 8,

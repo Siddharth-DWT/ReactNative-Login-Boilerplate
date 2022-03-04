@@ -4,14 +4,14 @@ import {makeStyles, withTheme} from 'react-native-elements';
 import {fontSize} from '../style/constants';
 import DWTView from '../components/kit/view/DWTView';
 import Text from '../components/kit/text/Text';
-import {RCTheme} from '../style/theme';
+import {DWTTheme} from '../style/theme';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
 
 const Home = (props: Props) => {
-  const styles = useStyles();
+  const styles = useStyles(props);
 
   return (
     <DWTView>
@@ -32,9 +32,6 @@ const useStyles = makeStyles(() => {
     text: {
       fontSize: fontSize.normal,
       padding: 8,
-    },
-    button: {
-      paddingVertical: 4,
     },
   };
 });

@@ -1,27 +1,22 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
+import {FlatList, Switch, TouchableOpacity, View} from 'react-native';
 import {makeStyles, withTheme} from 'react-native-elements';
-import {
-  ActivityIndicator,
-  FlatList,
-  Switch,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import Avatar from '../components/kit/avatar/Avatar';
-import Text from '../components/kit/text/Text';
-import {fontSize, iconSize} from '../style/constants';
-import SettingItem from '../components/settings/SettingItem';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {RCTheme} from '../style/theme';
+import {useNavigation} from '@react-navigation/native';
+import Avatar from '../components/kit/avatar/Avatar';
+import Text from '../components/kit/text/Text';
+import {iconSize} from '../style/constants';
+import SettingItem from '../components/settings/SettingItem';
+import {DWTTheme} from '../style/theme';
 import {Settings as SettingsContainer} from '../container';
 import DWTView from '../components/kit/view/DWTView';
-import {useNavigation} from '@react-navigation/native';
 
 type Props = {
-  theme: RCTheme;
+  theme: DWTTheme;
 };
+
 const Settings = (props: Props) => {
   const styles = useStyles();
   const {
@@ -31,7 +26,6 @@ const Settings = (props: Props) => {
     clearLoggedInUser,
     clearLoggedInUserToken,
   } = SettingsContainer.useContainer();
-  const [isLoading, setLoading] = useState(false);
   const isDarkMode = useMemo(() => theme === 'dark', [theme]);
   const toggleSwitch = async () => {
     await saveTheme(isDarkMode ? 'light' : 'dark');
@@ -94,11 +88,7 @@ const Settings = (props: Props) => {
         },
         {
           id: 202,
-          title: isLoading ? (
-            <ActivityIndicator color={props.theme.colors.white} />
-          ) : (
-            'Log Out'
-          ),
+          title: 'Log Out',
           onPress: () => logoutHandler(),
           icon: <AntIcon name="logout" style={styles.icon} />,
         },

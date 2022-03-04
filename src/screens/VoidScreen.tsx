@@ -1,13 +1,12 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import {makeStyles, withTheme} from 'react-native-elements';
-import {fontSize} from '../style/constants';
 import DWTView from '../components/kit/view/DWTView';
 import Text from '../components/kit/text/Text';
-import {RCTheme} from '../style/theme';
+import {DWTTheme} from '../style/theme';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
 
 const VoidScreen = (props: Props) => {
@@ -35,9 +34,6 @@ const useStyles = makeStyles(() => {
     },
     text: {
       padding: 8,
-    },
-    button: {
-      paddingVertical: 4,
     },
   };
 });

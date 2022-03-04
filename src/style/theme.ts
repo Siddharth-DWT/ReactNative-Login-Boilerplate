@@ -28,7 +28,7 @@ const platformColorsDark: Partial<PlatformColors> = {
   warning: '#ffc107',
 };
 
-export type RCTheme = {
+export type DWTTheme = {
   name: string;
   colors: {
     primary: string;
@@ -66,7 +66,7 @@ export type RCTheme = {
   };
 };
 
-const lightTheme: RCTheme = {
+const lightTheme: DWTTheme = {
   name: 'light',
   colors: {
     primaryLight: '#06ac9e',
@@ -104,7 +104,7 @@ const lightTheme: RCTheme = {
   },
 };
 
-const darkTheme: RCTheme = {
+const darkTheme: DWTTheme = {
   name: 'dark',
   colors: {
     primaryLight: '#08d4c4',

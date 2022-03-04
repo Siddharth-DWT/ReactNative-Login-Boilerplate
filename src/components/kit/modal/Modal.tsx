@@ -1,5 +1,4 @@
 import React, {ReactNode, useEffect, useRef} from 'react';
-import {withTheme, makeStyles} from 'react-native-elements';
 import {
   Animated,
   View,
@@ -8,21 +7,18 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
+import {withTheme, makeStyles} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 
 type Props = {
-  //   height?: number;
-  //   visible?: boolean;
-  //   setVisible?: (arg0: boolean) => void;
-  onClose?: () => void;
   children?: ReactNode;
-  type?: 'shutter' | 'popup';
+  type: 'shutter' | 'popup';
   containerStyle?: StyleProp<ViewStyle>;
 };
 
 const Modal: React.FC<Props> = props => {
   const styles = useStyles(props);
-  const {onClose, children, containerStyle} = props;
+  const {children, containerStyle} = props;
   const anim: Animated.Value = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
   const backButtonHandler = () => {
@@ -60,8 +56,7 @@ const Modal: React.FC<Props> = props => {
 };
 
 const useStyles = makeStyles((theme, props: Props) => {
-  //   const isPopUp: boolean = props.type === 'popup'; // do not remove it
-  const isPopUp = true;
+  const isPopUp: boolean = props.type === 'popup';
   return {
     mainContainer: {
       width: '100%',

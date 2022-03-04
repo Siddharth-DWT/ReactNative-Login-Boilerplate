@@ -3,7 +3,7 @@ import {Text, StyleProp, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {makeStyles, withTheme} from 'react-native-elements';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as Stacks from '../navigation/stack';
-import {RCTheme} from '../style/theme';
+import {DWTTheme} from '../style/theme';
 import {iconSize} from '../style/constants';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -12,12 +12,8 @@ import {Settings} from '../container';
 
 const Tab = createBottomTabNavigator();
 
-type Props = {
-  theme?: RCTheme;
-};
-
 const TabBar = (props: any) => {
-  const {state, descriptors, navigation, theme} = props;
+  const {state, descriptors, navigation} = props;
   const styles = useStyles();
 
   const renderIcon = (name: string, style: StyleProp<ViewStyle>) => {
@@ -81,7 +77,7 @@ const TabBar = (props: any) => {
   );
 };
 
-const BottomTab = (bottomTabProps: Props) => {
+const BottomTab = (bottomTabProps: any) => {
   const {loggedInUser} = Settings.useContainer();
   return (
     <Tab.Navigator
@@ -123,7 +119,7 @@ const useStyles = makeStyles(theme => {
       alignSelf: 'center',
       fontSize: iconSize.normal,
       color:
-        theme?.name == 'dark'
+        theme?.name === 'dark'
           ? theme.colors.primaryLight
           : theme.colors?.primaryDark,
     },

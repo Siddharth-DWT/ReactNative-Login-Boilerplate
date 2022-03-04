@@ -1,16 +1,15 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import {makeStyles, withTheme} from 'react-native-elements';
-import DWTView from '../components/kit/view/DWTView';
-import {RCTheme} from '../style/theme';
 import {useForm, Controller} from 'react-hook-form';
+import {TextInput, Button} from 'react-native-paper';
+import DWTView from '../components/kit/view/DWTView';
+import {DWTTheme} from '../style/theme';
 import {editProfile} from '../assets/data/formData';
-import {TextInput} from 'react-native-paper';
-import {Button} from 'react-native-paper';
 import {EditUserBody} from '../types/auth';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
   route?: any;
 };
 
@@ -32,7 +31,7 @@ const EditUser = (props: Props) => {
     },
   });
   const onPressHandler = async (data: EditUserBody) => {
-    console.log('edit user api is not ready');
+    console.log('edit user api is not ready', data);
     // setLoading(true);
     // if (user) {
     //   update({...data, id: user._id})

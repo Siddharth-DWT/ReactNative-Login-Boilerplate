@@ -1,8 +1,8 @@
 import {useEffect, useState, useCallback} from 'react';
+import {ColorSchemeName, useColorScheme} from 'react-native';
 import {createContainer} from 'unstated-next';
 import useAsyncStorage from '../hooks/useAsyncStorage';
 import {asyncStorageKeys} from '../style/constants';
-import {ColorSchemeName, useColorScheme} from 'react-native';
 import {User} from '../types/auth';
 
 function useSettings() {

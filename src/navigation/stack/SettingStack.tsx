@@ -2,9 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ChangePassword from '../../screens/ChangePassword';
 import NavHeader from '../../components/kit/NavHeader';
-import Home from '../../screens/Home';
-import Settings from '../../screens/Settings';
-import MyProfile from '../../screens/MyProfile';
+import {Settings, MyProfile} from '../../screens';
 
 const Stack = createNativeStackNavigator();
 

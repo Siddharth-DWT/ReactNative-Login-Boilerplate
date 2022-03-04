@@ -5,23 +5,22 @@ import {
   ActivityIndicator,
   ToastAndroid,
 } from 'react-native';
-import {TextInput} from 'react-native-paper';
-import {RCTheme} from '../style/theme';
+import {TextInput, Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {withTheme, makeStyles} from 'react-native-elements';
 import {useForm, Controller} from 'react-hook-form';
+import {DWTTheme} from '../style/theme';
 import {loginFormData} from '../assets/data/formData';
-import {getUserById, login, resetPassword} from '../api/auth';
+import {getUserById, login} from '../api/auth';
 import Settings from '../container/Settings';
 import PopupContainer from './PopupContainer';
 import Text from '../components/kit/text/Text';
-import {Button} from 'react-native-paper';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
 
-interface IFormValues {
+interface FormValues {
   email: string;
   password: string;
 }
@@ -35,7 +34,7 @@ const LogIn = (props: Props) => {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<IFormValues>({
+  } = useForm<FormValues>({
     defaultValues: {
       email: 'email',
       password: 'password',
@@ -84,11 +83,7 @@ const LogIn = (props: Props) => {
   return (
     <PopupContainer
       headerComponent={
-        <Text
-          type="h1"
-          color="white"
-          size="jumboXPlus"
-          style={styles.textHeader}>
+        <Text color="white" size="jumboXPlus" weight="bold">
           Welcome!
         </Text>
       }
@@ -161,11 +156,8 @@ const LogIn = (props: Props) => {
   );
 };
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles(() => {
   return {
-    textHeader: {
-      fontWeight: 'bold',
-    },
     textinput: {
       marginVertical: 8,
     },

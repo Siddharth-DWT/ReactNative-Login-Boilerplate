@@ -1,7 +1,7 @@
 import React from 'react';
-import {fontSize} from '../../../style/constants';
 import {makeStyles, withTheme} from 'react-native-elements';
 import {Text as RNText, TextProps} from 'react-native';
+import {fontSize} from '../../../style/constants';
 
 type Props = TextProps & {
   size?:
@@ -20,7 +20,6 @@ type Props = TextProps & {
     | 'dark'
     | 'success'
     | 'error'
-    | 'link'
     | 'h1'
     | 'h2'
     | 'h3'

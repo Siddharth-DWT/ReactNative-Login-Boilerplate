@@ -1,11 +1,11 @@
 import React, {useMemo, useState, useEffect} from 'react';
+import {Linking, Platform} from 'react-native';
 import {ThemeProvider} from 'react-native-elements';
 import {NavigationContainer} from '@react-navigation/native';
-import {lightTheme, darkTheme} from '../style/theme';
-import Settings from '../container/Settings';
-import Root from './Root';
-import {Linking, Platform} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {lightTheme, darkTheme} from '../style/theme';
+import {Settings} from '../container';
+import Root from './Root';
 
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 
@@ -35,7 +35,6 @@ const App = () => {
         setIsReady(true);
       }
     };
-
     if (!isReady) {
       restoreState();
     }

@@ -1,15 +1,15 @@
 import React from 'react';
-import FIcon from 'react-native-vector-icons/FontAwesome5';
-import {RCTheme} from '../../../style/theme';
-import {iconSize} from '../../../style/constants';
-import {withTheme, makeStyles, FullTheme} from 'react-native-elements';
 import {View, StyleProp, ViewStyle, TouchableOpacity} from 'react-native';
+import {withTheme, makeStyles} from 'react-native-elements';
+import FIcon from 'react-native-vector-icons/FontAwesome5';
+import {DWTTheme} from '../../../style/theme';
+import {iconSize} from '../../../style/constants';
 import Avatar from '../avatar/Avatar';
 import {User} from '../../../types/auth';
 
 type Props = {
-  theme?: RCTheme;
-  style?: StyleProp<ViewStyle>;
+  theme?: DWTTheme;
+  containerStyle?: StyleProp<ViewStyle>;
   iconName?: string;
   iconSize?: number;
   iconColor?: string;
@@ -21,10 +21,10 @@ type Props = {
 
 const ProfileIcon = (props: Props) => {
   const styles = useStyles(props);
-  const {theme, item} = props;
+  const {theme, item, iconName, iconColor, containerStyle} = props;
 
   return (
-    <View style={[styles.container, props.style]}>
+    <View style={[styles.container, containerStyle]}>
       <Avatar
         source={{
           uri:
@@ -35,9 +35,9 @@ const ProfileIcon = (props: Props) => {
 
       <TouchableOpacity onPress={props.onPressIcon} style={styles.addedIcon}>
         <FIcon
-          name={props.iconName || 'comment-dollar'}
+          name={iconName || 'comment-dollar'}
           size={props.iconSize || iconSize.normal}
-          color={props.iconColor || theme?.colors?.white}
+          color={iconColor || theme?.colors?.white}
         />
       </TouchableOpacity>
     </View>
@@ -45,7 +45,8 @@ const ProfileIcon = (props: Props) => {
 };
 
 const useStyles = makeStyles((theme, props: Props) => {
-  const BORDER_WIDTH: number = props.hasBorder ? 3 : 0;
+  const {hasBorder, iconBgColor} = props;
+  const BORDER_WIDTH: number = hasBorder ? 3 : 0;
   const CONTAINER_SIZE = 150;
   const ADDED_ICON_SIZE = 40;
   return {
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme, props: Props) => {
       elevation: 16,
       borderWidth: BORDER_WIDTH,
       borderColor: theme.colors?.primary,
-      backgroundColor: props.iconBgColor || theme.colors?.white,
+      backgroundColor: iconBgColor || theme.colors?.white,
     },
   };
 });

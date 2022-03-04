@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import {ScrollView, ToastAndroid, ActivityIndicator} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
+import {TextInput, Button} from 'react-native-paper';
+import {useForm, Controller} from 'react-hook-form';
 import {makeStyles, withTheme} from 'react-native-elements';
 import {fontSize} from '../style/constants';
-import {RCTheme} from '../style/theme';
+import {DWTTheme} from '../style/theme';
 import DWTView from '../components/kit/view/DWTView';
-import {Button} from 'react-native-paper';
 import Text from '../components/kit/text/Text';
-import {useNavigation} from '@react-navigation/native';
-import {useForm, Controller} from 'react-hook-form';
 import {forgotPassword} from '../api/auth';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
+
 const ForgotPassword = (props: Props) => {
   const styles = useStyles();
   const {theme} = props;

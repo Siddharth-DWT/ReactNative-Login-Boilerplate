@@ -1,17 +1,18 @@
 import React from 'react';
+import {View, Image, StyleProp, ViewStyle} from 'react-native';
 import {withTheme, makeStyles} from 'react-native-elements';
-import {View, Image} from 'react-native';
 
 type Props = {
   size?: 'small' | 'normal' | 'large';
   source: any;
-  containerStyle?: any;
+  containerStyle?: StyleProp<ViewStyle>;
+  imageContainerStyle?: StyleProp<ViewStyle>;
 };
 const Avatar = (props: Props) => {
   const styles = useStyles(props);
   return (
     <View style={[styles.container, props.containerStyle]}>
-      <View style={styles.imageContainer}>
+      <View style={[styles.imageContainer, props.imageContainerStyle]}>
         <Image source={props.source} style={styles.image}></Image>
       </View>
     </View>

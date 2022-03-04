@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
 import {ScrollView, ToastAndroid, ActivityIndicator} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {TextInput, Button} from 'react-native-paper';
 import {makeStyles, withTheme} from 'react-native-elements';
-import {RCTheme} from '../style/theme';
+import {useForm, Controller} from 'react-hook-form';
+import {useNavigation} from '@react-navigation/native';
+import {DWTTheme} from '../style/theme';
 import {changePassword as changePasswordData} from '../assets/data/formData';
 import DWTView from '../components/kit/view/DWTView';
-import {Button} from 'react-native-paper';
 import Text from '../components/kit/text/Text';
-import {useNavigation} from '@react-navigation/native';
-import {useForm, Controller} from 'react-hook-form';
 import {changePassword} from '../api/auth';
-import Settings from '../container/Settings';
+import {Settings} from '../container';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
 
 const ChangePassword = (props: Props) => {
@@ -104,7 +103,7 @@ const ChangePassword = (props: Props) => {
   );
 };
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles(() => {
   return {
     container: {
       marginHorizontal: 16,

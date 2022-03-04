@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
 import {ScrollView, ToastAndroid, View, ActivityIndicator} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {TextInput, Button} from 'react-native-paper';
+import {useForm, Controller} from 'react-hook-form';
 import {makeStyles, withTheme} from 'react-native-elements';
+import {useNavigation} from '@react-navigation/native';
 import {fontSize} from '../style/constants';
-import {RCTheme} from '../style/theme';
+import {DWTTheme} from '../style/theme';
 import {signupFormData} from '../assets/data/formData';
 import DWTView from '../components/kit/view/DWTView';
-import {Button} from 'react-native-paper';
 import Text from '../components/kit/text/Text';
-import {useNavigation} from '@react-navigation/native';
-import {useForm, Controller} from 'react-hook-form';
 import {create} from '../api/auth';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
+
 const SignUp = (props: Props) => {
   const styles = useStyles();
   const {theme} = props;
@@ -84,9 +84,7 @@ const SignUp = (props: Props) => {
         ))}
         <Text style={styles.forgotAcText} type="h4">
           Already have an account ?
-          <Text
-            color="link"
-            onPress={() => navigation.navigate('LogIn' as never)}>
+          <Text onPress={() => navigation.navigate('LogIn' as never)}>
             {' Log In '}
           </Text>
         </Text>
@@ -95,23 +93,21 @@ const SignUp = (props: Props) => {
           {isLoading ? (
             <ActivityIndicator color={props.theme?.colors.white} />
           ) : (
-            <Button theme={props.theme} mode="contained" style={styles.button}>
+            <Button
+              theme={props.theme}
+              mode="contained"
+              style={styles.button}
+              onPress={handleSubmit(signupHandler)}>
               Create Account
             </Button>
           )}
-          {/* <Button
-            containerStyle={[styles.button, {padding: 0}]}
-            rounded
-            onPress={handleSubmit(signupHandler)}
-            title={}
-          /> */}
         </View>
       </ScrollView>
     </DWTView>
   );
 };
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles(() => {
   return {
     container: {
       paddingHorizontal: 16,

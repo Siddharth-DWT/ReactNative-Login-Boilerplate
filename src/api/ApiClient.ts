@@ -32,9 +32,9 @@ export class ApiClient {
     };
     const url = `${API_URL}${endpoint}`;
 
-    // console.log(`${method} REQUEST: ${url}`);
-    // console.log('HEADER:', configWithToken);
-    // console.log('DATA:', data);
+    console.log(`${method} REQUEST: ${url}`);
+    console.log('HEADER:', configWithToken);
+    console.log('DATA:', data);
 
     const body = method !== 'GET' && {
       body: JSON.stringify(data),

@@ -1,15 +1,15 @@
 import React from 'react';
 import {ScrollView, View} from 'react-native';
 import {makeStyles, withTheme} from 'react-native-elements';
-import DWTView from '../components/kit/view/DWTView';
-import Text from '../components/kit/text/Text';
-import {RCTheme} from '../style/theme';
-import fakeUserData from '../assets/data/fakeUserData';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
+import DWTView from '../components/kit/view/DWTView';
+import Text from '../components/kit/text/Text';
+import {DWTTheme} from '../style/theme';
+import fakeUserData from '../assets/data/fakeUserData';
 
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
 };
 
 const AdminHome = (props: Props) => {
@@ -78,8 +78,6 @@ const useStyles = makeStyles(theme => {
     text: {
       padding: 8,
     },
-
-    //
     userItemContainer: {
       backgroundColor: theme.colors.darkerBackground,
       marginVertical: 4,
@@ -104,50 +102,6 @@ const useStyles = makeStyles(theme => {
     },
     editButtonLabel: {
       color: theme.colors.primary,
-    },
-
-    //
-
-    centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 22,
-    },
-    modalView: {
-      margin: 20,
-      backgroundColor: 'white',
-      borderRadius: 20,
-      padding: 35,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-    },
-    button: {
-      borderRadius: 20,
-      padding: 10,
-      elevation: 2,
-    },
-    buttonOpen: {
-      backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-      backgroundColor: '#2196F3',
-    },
-    textStyle: {
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: 'center',
     },
   };
 });

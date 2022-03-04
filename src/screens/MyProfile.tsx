@@ -1,19 +1,20 @@
 import React, {useState} from 'react';
-import Snackbar from 'react-native-snackbar';
 import {ScrollView, View, ActivityIndicator} from 'react-native';
-import ProfileIcon from '../components/kit/avatar/ProfileIcon';
-import {RCTheme} from '../style/theme';
 import {withTheme, makeStyles} from 'react-native-elements';
-import DWTView from '../components/kit/view/DWTView';
-import {useForm, Controller} from 'react-hook-form';
-import * as Container from '../container';
-import {update} from '../api/auth';
-import Text from '../components/kit/text/Text';
-import {EditUserBody} from '../types/auth';
-import {editProfile} from '../assets/data/formData';
 import {Button, TextInput} from 'react-native-paper';
+import Snackbar from 'react-native-snackbar';
+import ProfileIcon from '../components/kit/avatar/ProfileIcon';
+import {useForm, Controller} from 'react-hook-form';
+import Text from '../components/kit/text/Text';
+import DWTView from '../components/kit/view/DWTView';
+import {update} from '../api/auth';
+import {DWTTheme} from '../style/theme';
+import {EditUserBody} from '../types/auth';
+import * as Container from '../container';
+import {editProfile} from '../assets/data/formData';
+
 type Props = {
-  theme?: RCTheme;
+  theme?: DWTTheme;
   route: any;
 };
 
@@ -36,17 +37,14 @@ const MyProfile = (props: Props) => {
       gender: user?.gender,
     },
   });
-  console.log('myprofile user', user);
 
   const onPressHandler = async (data: EditUserBody) => {
-    console.log('edit user api is not ready');
     setLoading(true);
     if (user) {
       update({...data, id: user._id})
         .then(async res => {
           if (!res.error) {
             await saveLoggedInUser(res?.data.user);
-            console.log('updated res', res);
             Snackbar.show({
               text: 'Profile has been updated successfully',
               duration: Snackbar.LENGTH_SHORT,
@@ -142,11 +140,6 @@ const useStyles = makeStyles(theme => {
     textContainer: {
       alignItems: 'center',
       marginBottom: 10,
-    },
-    inputContainer: {
-      width: '100%',
-      marginTop: 8,
-      marginBottom: 16,
     },
     button: {
       marginVertical: 8,
