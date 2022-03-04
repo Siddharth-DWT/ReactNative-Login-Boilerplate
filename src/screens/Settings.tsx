@@ -36,11 +36,10 @@ const Settings = (props: Props) => {
   const toggleSwitch = async () => {
     await saveTheme(isDarkMode ? 'light' : 'dark');
   };
+
   const logoutHandler = async () => {
-    setLoading(true);
     await clearLoggedInUser();
     await clearLoggedInUserToken();
-    setLoading(false);
   };
   const navigation = useNavigation();
 

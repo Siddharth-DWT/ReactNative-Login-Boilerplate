@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -9,7 +9,6 @@ import {TextInput} from 'react-native-paper';
 import {RCTheme} from '../style/theme';
 import {useNavigation} from '@react-navigation/native';
 import {withTheme, makeStyles} from 'react-native-elements';
-import {fontSize} from '../style/constants';
 import {useForm, Controller} from 'react-hook-form';
 import {loginFormData} from '../assets/data/formData';
 import {getUserById, login, resetPassword} from '../api/auth';
@@ -22,6 +21,11 @@ type Props = {
   theme?: RCTheme;
 };
 
+interface IFormValues {
+  email: string;
+  password: string;
+}
+
 const LogIn = (props: Props) => {
   const {theme} = props;
   const navigation = useNavigation();
@@ -31,7 +35,7 @@ const LogIn = (props: Props) => {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm({
+  } = useForm<IFormValues>({
     defaultValues: {
       email: 'email',
       password: 'password',
@@ -70,6 +74,12 @@ const LogIn = (props: Props) => {
       })
       .finally(() => setLoading(false));
   };
+
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+    };
+  }, []);
 
   return (
     <PopupContainer
